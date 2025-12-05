@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
 </head>
 <body>
 
@@ -16,11 +16,11 @@
             <div class="top-bar">
                 <span>explorer</span>
             </div>
-            <div class="content no-scroll">
+            <div class="content">
                 <h3>./navigation</h3>
                 <ul class="tree-view">
                     <li><a href="/">[DIR] .. (Home)</a></li>
-                    <li><a href="/about">[FILE] whoami.txt</a></li>
+                    <li><a href="/about/">[FILE] whoami.txt</a></li>
                     <br>
                     <li><span class="folder">./writeups</span></li>
                     <li class="nested"><a href="#">buffer_overflow.md</a></li>
@@ -28,11 +28,10 @@
                     <br>
                     <li><span class="folder">./notes</span></li>
                     <li class="nested"><a href="#">linux_cheatsheet.md</a></li>
-                    <li class="nested"><a href="#">vim_config.md</a></li>
                 </ul>
-                
                 <div class="sys-info">
                     <br>
+                    <hr style="border:0; border-top:1px dashed #504945;">
                     <p>DISK: 84% Used</p>
                     <p>IP: 127.0.0.1</p>
                 </div>
