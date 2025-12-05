@@ -14,41 +14,38 @@
         
         <aside class="window sidebar">
             <div class="top-bar">
-                <span>explorer</span>
+                <span>MENU</span>
+                <span>[X]</span>
             </div>
             <div class="content">
-                <h3>./navigation</h3>
-                <ul class="tree-view">
-                    <li><a href="/">[DIR] .. (Home)</a></li>
-                    <li><a href="/about/">[FILE] whoami.txt</a></li>
-                    <br>
-                    <li><span class="folder">./writeups</span></li>
-                    <li class="nested"><a href="#">buffer_overflow.md</a></li>
-                    <li class="nested"><a href="#">htb_machines.md</a></li>
-                    <br>
-                    <li><span class="folder">./notes</span></li>
-                    <li class="nested"><a href="#">linux_cheatsheet.md</a></li>
+                <div class="section-title">./SYSTEM</div>
+                <ul class="nav-list">
+                    <li><a href="/">[ HOME ]</a></li>
+                    <li><a href="/about/">[ ABOUT ]</a></li>
                 </ul>
-                <div class="sys-info">
-                    <br>
-                    <hr style="border:0; border-top:1px dashed #504945;">
-                    <p>DISK: 84% Used</p>
-                    <p>IP: 127.0.0.1</p>
+
+                <div class="section-title">./WRITEUPS</div>
+                <ul class="nav-list">
+                    <li><a href="#">buffer_overflow.md</a></li>
+                    <li><a href="#">htb_notes.md</a></li>
+                    <li><a href="#">network_scan.py</a></li>
+                </ul>
+
+                <div style="margin-top: auto; padding-top: 20px; font-size: 0.8em; color: var(--dim);">
+                    <p>USER: root</p>
+                    <p>STATUS: Online</p>
                 </div>
             </div>
         </aside>
 
         <main class="window main-terminal">
             <div class="top-bar">
-                <span>vim {{ page.title | downcase | replace: ' ', '_' }}.md</span>
-                <span>utf-8</span>
+                <span>{{ page.title | default: "Terminal" }}</span>
+                <span>bash</span>
             </div>
+            
             <div class="content">
                 {{ content }}
-            </div>
-            <div class="status-bar">
-                <span>-- INSERT --</span>
-                <span style="margin-left: auto;">Ln 42, Col 12</span>
             </div>
         </main>
 
