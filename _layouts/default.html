@@ -8,22 +8,51 @@
 </head>
 <body>
 
-    <div class="terminal-window">
-        <div class="top-bar">
-            <span>root@blog: ~/{{ page.title | downcase }}</span>
-            <span>bash</span>
-        </div>
+    <div class="scanlines"></div>
 
-        <div class="content">
-            {{ content }}
-        </div>
+    <div class="desktop">
+        
+        <aside class="window sidebar">
+            <div class="top-bar">
+                <span>explorer</span>
+            </div>
+            <div class="content no-scroll">
+                <h3>./navigation</h3>
+                <ul class="tree-view">
+                    <li><a href="/">[DIR] .. (Home)</a></li>
+                    <li><a href="/about">[FILE] whoami.txt</a></li>
+                    <br>
+                    <li><span class="folder">./writeups</span></li>
+                    <li class="nested"><a href="#">buffer_overflow.md</a></li>
+                    <li class="nested"><a href="#">htb_machines.md</a></li>
+                    <br>
+                    <li><span class="folder">./notes</span></li>
+                    <li class="nested"><a href="#">linux_cheatsheet.md</a></li>
+                    <li class="nested"><a href="#">vim_config.md</a></li>
+                </ul>
+                
+                <div class="sys-info">
+                    <br>
+                    <p>DISK: 84% Used</p>
+                    <p>IP: 127.0.0.1</p>
+                </div>
+            </div>
+        </aside>
 
-        <div class="status-bar">
-            <span>MODE: INSERT</span>
-            <span>CPU: 12%</span>
-            <span>MEM: 40MB</span>
-            <span style="margin-left: auto;">[ <a href="/">HOME</a> ] [ <a href="/about">ABOUT</a> ]</span>
-        </div>
+        <main class="window main-terminal">
+            <div class="top-bar">
+                <span>vim {{ page.title | downcase | replace: ' ', '_' }}.md</span>
+                <span>utf-8</span>
+            </div>
+            <div class="content">
+                {{ content }}
+            </div>
+            <div class="status-bar">
+                <span>-- INSERT --</span>
+                <span style="margin-left: auto;">Ln 42, Col 12</span>
+            </div>
+        </main>
+
     </div>
 
 </body>
