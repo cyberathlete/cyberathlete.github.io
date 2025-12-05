@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+:root {
+    /* The "Warm" Gruvbox Palette */
+    --bg-body: #1d2021;      /* Very dark brown/grey */
+    --bg-term: #282828;      /* Terminal background */
+    --fg-primary: #ebdbb2;   /* Cream text (softer than white) */
+    --accent: #d79921;       /* Warm Amber/Gold */
+    --dim: #928374;          /* Dimmed text for metadata */
+    --border: #504945;       
+    --glow: 0 0 5px rgba(215, 153, 33, 0.4); /* Amber Bloom */
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--fg-primary);
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* The "Complex" Window Container */
+.terminal-window {
+    width: 100%;
+    max-width: 900px;
+    background-color: var(--bg-term);
+    border: 2px solid var(--dim);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; /* Keeps scanlines inside */
+}
+
+/* CRT Scanline Overlay */
+.terminal-window::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 10;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none; /* Let clicks pass through */
+}
+
+/* The Top Bar (tmux style) */
+.top-bar {
+    background-color: var(--dim);
+    color: var(--bg-term);
+    padding: 5px 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content {
+    padding: 40px;
+    flex-grow: 1;
+    overflow-y: auto;
+    text-shadow: var(--glow); /* The warm glow */
+}
+
+/* Headers */
+h1, h2, h3 { color: var(--accent); }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+a:hover { background-color: var(--accent); color: var(--bg-term); }
+
+/* The Bottom Status Bar */
+.status-bar {
+    border-top: 1px solid var(--dim);
+    padding: 8px 15px;
+    font-size: 0.85em;
+    color: var(--dim);
+    display: flex;
+    gap: 20px;
+}
