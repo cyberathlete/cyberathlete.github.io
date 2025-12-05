@@ -29,12 +29,16 @@
                     <div class="section-title">./WRITEUPS</div>
                     <ul class="nav-list">
                         {% for post in site.posts %}
-                        <li>
-                            <a href="{{ post.url | relative_url }}">
-                                {{ post.title }}
-                            </a>
-                        </li>
-                    {% endfor %}
+                            <li>
+                                <a href="{{ post.url | relative_url }}">
+                                    {% for tag in post.tags %}
+                                            <span class="tag-badge">[{{ tag | upcase }}]</span>
+                                    {% endfor %}
+                
+                                    {{ post.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
                 </ul>
                 </ul>
 
