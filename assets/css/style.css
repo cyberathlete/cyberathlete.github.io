@@ -111,3 +111,16 @@ h1, h2, h3 { color: var(--accent); margin-top: 0; text-shadow: var(--glow); }
     .window { width: 100%; box-shadow: none; border: none; }
     .sidebar { height: 200px; border-bottom: 2px solid var(--accent); }
 }
+/* TAG STYLING */
+.tag-badge {
+    color: #928374;        /* Use the "Dim" variable color */
+    font-size: 0.75em;     /* Make it smaller than the text */
+    margin-right: 8px;     /* Space between tag and title */
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+/* Optional: Make tags light up when you hover over the link */
+.nav-list a:hover .tag-badge {
+    color: #1d2021;        /* Turn dark when background turns amber */
+}
