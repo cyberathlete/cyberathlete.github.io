@@ -1,94 +1,95 @@
-/* 1. RESTORED VARIABLES (You need these!) */
+/* --- 1. THE VARIABLES (Crucial for Colors) --- */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
 :root {
-    --bg-body: #1d2021;
-    --bg-term: #282828;
-    --fg-primary: #ebdbb2;
-    --accent: #d79921;
-    --dim: #928374;
-    --border: #504945;
-    --glow: 0 0 5px rgba(215, 153, 33, 0.4);
+    --bg-body: #1d2021;      /* Dark background */
+    --bg-term: #282828;      /* Window background */
+    --fg-primary: #ebdbb2;   /* Cream Text */
+    --accent: #d79921;       /* RETRO AMBER */
+    --dim: #928374;          /* Dimmed Grey */
+    --border: #504945;       /* Border Color */
+    --glow: 0 0 5px rgba(215, 153, 33, 0.4); /* Amber Bloom */
 }
 
-/* 2. RESET & BODY */
+/* --- 2. GLOBAL RESET --- */
 body {
     background-color: var(--bg-body);
     color: var(--fg-primary);
     font-family: 'Fira Code', monospace;
     margin: 0;
     height: 100vh;
-    overflow: hidden; /* Important: Stop the whole page from scrolling */
+    display: flex;
+    align-items: center;     /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    overflow: hidden;
 }
 
-/* 3. THE GRID CONTAINER (The Fix is here) */
+/* --- 3. THE DESKTOP (The Container for both windows) --- */
 .desktop {
     display: grid;
-    /* Fixed 280px Sidebar | The rest is Main Window */
-    grid-template-columns: 280px 1fr; 
-    grid-template-rows: 100%;
+    /* LEFT WINDOW (300px) | GAP (20px) | RIGHT WINDOW (Auto width) */
+    grid-template-columns: 300px 1fr; 
     gap: 20px;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+    
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh; /* Floating height, not full screen */
+    
+    position: relative;
+    z-index: 2;
 }
 
-/* 4. WINDOW STYLING */
+/* --- 4. THE WINDOW STYLE (Shared by both boxes) --- */
 .window {
     background-color: var(--bg-term);
     border: 2px solid var(--dim);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5); /* Retro Shadow */
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 2;
-    min-height: 0; /* Crucial for Firefox grid scrolling */
+    overflow: hidden;
 }
 
-/* 5. SIDEBAR SPECIFICS */
-.sidebar .content {
-    overflow-y: auto;
-    font-size: 0.9em;
-    padding: 15px;
-}
-
-/* Tree View Styling */
-.tree-view { list-style: none; padding-left: 0; margin: 0; }
-.tree-view li { margin-bottom: 5px; }
-.tree-view .nested { margin-left: 15px; border-left: 1px dashed var(--dim); padding-left: 10px; }
-.tree-view a { color: var(--fg-primary); text-decoration: none; }
-.tree-view a:hover { background-color: var(--accent); color: var(--bg-term); }
-.folder { color: var(--accent); font-weight: bold; }
-
-/* 6. MAIN TERMINAL SPECIFICS */
-.main-terminal {
-    width: 100%; 
-}
-.main-terminal .content {
-    overflow-y: auto;
-    padding: 30px;
-    flex-grow: 1;
-}
-
-/* 7. TOP & STATUS BARS */
+/* --- 5. INNER LAYOUTS --- */
+/* Top Bar */
 .top-bar {
     background-color: var(--dim);
     color: var(--bg-term);
-    padding: 5px 10px;
+    padding: 8px 15px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    flex-shrink: 0; /* Stop bar from shrinking when scrolling */
-}
-.status-bar {
-    border-top: 1px solid var(--dim);
-    padding: 5px 10px;
-    font-size: 0.8em;
-    display: flex;
-    gap: 15px;
-    background: var(--bg-term);
-    flex-shrink: 0;
+    text-transform: uppercase;
 }
 
-/* 8. CRT SCANLINES */
+/* Content Areas */
+.content {
+    padding: 20px;
+    overflow-y: auto; /* Scroll inside the window */
+    flex-grow: 1;
+}
+
+/* Navigation Links (Sidebar) */
+.nav-list { list-style: none; padding: 0; }
+.nav-list li { margin-bottom: 8px; }
+.nav-list a { 
+    color: var(--fg-primary); 
+    text-decoration: none; 
+    display: block;
+    padding: 5px;
+    border: 1px solid transparent;
+}
+.nav-list a:hover {
+    background-color: var(--accent);
+    color: var(--bg-term);
+    cursor: pointer;
+}
+.section-title { color: var(--accent); margin-top: 20px; border-bottom: 1px dashed var(--dim); }
+
+/* Typography Defaults */
+a { color: var(--accent); text-decoration: none; }
+h1, h2, h3 { color: var(--accent); margin-top: 0; text-shadow: var(--glow); }
+
+/* --- 6. SCANLINES (The Texture) --- */
 .scanlines {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
@@ -98,23 +99,15 @@ body {
     z-index: 10;
 }
 
-/* 9. MOBILE RESPONSIVENESS (Only trigger on small phones) */
-@media (max-width: 600px) {
+/* --- 7. MOBILE FIX (Stack them on phones) --- */
+@media (max-width: 800px) {
     .desktop {
         display: flex;
         flex-direction: column;
-        padding: 5px;
-        gap: 10px;
-        overflow-y: auto; /* Allow scrolling on phones */
+        height: 100%;
+        width: 100%;
+        margin: 0;
     }
-    .sidebar {
-        height: 200px; /* Small menu on top */
-        flex-shrink: 0;
-    }
-    .main-terminal {
-        height: auto;
-        min-height: 500px;
-    }
-    .sys-info { display: none; }
-    body { overflow: auto; }
+    .window { width: 100%; box-shadow: none; border: none; }
+    .sidebar { height: 200px; border-bottom: 2px solid var(--accent); }
 }
