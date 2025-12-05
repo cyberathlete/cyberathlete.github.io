@@ -1,0 +1,6 @@
+title: "User@Blog:~$"
+description: "My custom terminal blog"
+baseurl: ""
+url: "https://yourusername.github.io"
+permalink: /:title/
+markdown: kramdown
