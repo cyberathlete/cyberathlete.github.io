@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <div class="terminal-window">
+        <div class="top-bar">
+            <span>root@blog: ~/{{ page.title | downcase }}</span>
+            <span>bash</span>
+        </div>
+
+        <div class="content">
+            {{ content }}
+        </div>
+
+        <div class="status-bar">
+            <span>MODE: INSERT</span>
+            <span>CPU: 12%</span>
+            <span>MEM: 40MB</span>
+            <span style="margin-left: auto;">[ <a href="/">HOME</a> ] [ <a href="/about">ABOUT</a> ]</span>
+        </div>
+    </div>
+
+</body>
+</html>
