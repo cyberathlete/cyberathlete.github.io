@@ -22,7 +22,8 @@ Welcome to the archive. This node stores CTF writeups and research notes.
 
 ### Active Processes
 
-```bash
+{% highlight bash %}
 PID   USER     PR  NI  VIRT  RES   SHR S  %CPU  COMMAND
 1337  root     20   0  160m  40m   5m  S   0.0  ./capture_the_flag.sh
 1338  root     20   0  110m  20m   4m  S   0.0  python3 visuals.py
+{% endhighlight %}
